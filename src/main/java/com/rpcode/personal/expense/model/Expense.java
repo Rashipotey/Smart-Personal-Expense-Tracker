@@ -11,6 +11,12 @@ public class Expense {
         this.date=date;
         this.category=category;
     }
+    public String getCategory(){
+        return this.category;
+    }   
+    public String getDate(){
+        return this.date;
+    }
     @Override
     public String toString(){
         return title+","+amount+","+date+","+category;
