@@ -1,6 +1,6 @@
 package com.rpcode.personal.expense.util;
 import java.io.*;
-import java.util.List;
+import java.util.*;
 import com.rpcode.personal.expense.model.Expense;
 
 public class FileHandler {
@@ -33,6 +33,27 @@ public class FileHandler {
             }
         }catch(IOException e){
             System.out.println("Error while loading file: "+e.getMessage());
+        }
+    }
+    public static void generateReport(double total, Map<String, Double> catTotal){
+        try(BufferedWriter bw=new BufferedWriter(new FileWriter("report.txt"))){
+            bw.write("Expense Report: ");
+            bw.newLine();
+            bw.newLine();
+            bw.write("Total Monthly Spending: "+total);
+            bw.newLine();
+            bw.newLine();
+            bw.write("Category wise breakdown: ");
+            bw.newLine();
+            bw.newLine();
+            for(String category:catTotal.keySet()){
+                bw.write(category+":"+catTotal.get(category));
+                bw.newLine();
+                bw.newLine();
+            }
+            System.out.println("Report generated successfully (report.txt)");
+        }catch(IOException e){
+            System.out.println("Error generating report: "+e.getMessage());
         }
     }
 }

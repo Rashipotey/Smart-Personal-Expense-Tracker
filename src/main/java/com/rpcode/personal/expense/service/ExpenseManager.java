@@ -28,6 +28,22 @@ public class ExpenseManager {
         }
         return result;
     }
+    public double getTotalByMonth(String monthYear){
+        double total=0;
+        for(Expense e:expenses){
+            if(e.getDate().endsWith(monthYear)){
+                total+=e.getAmount();
+            }
+        }
+        return total;
+    }
+    public Map<String, Double> getCategorywiseTotal(){
+        Map<String, Double> map=new HashMap<>();
+        for(Expense e:expenses){
+            map.put(e.getCategory(), map.getOrDefault(e.getCategory(), 0.0)+e.getAmount());
+        }
+        return map;
+    }
     public void addExpense(Expense e){
         expenses.add(e);
         FileHandler.save(expenses);

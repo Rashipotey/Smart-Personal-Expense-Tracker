@@ -17,6 +17,9 @@ public class Expense {
     public String getDate(){
         return this.date;
     }
+    public double getAmount(){
+        return this.amount;
+    }
     @Override
     public String toString(){
         return title+","+amount+","+date+","+category;

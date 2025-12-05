@@ -1,7 +1,9 @@
 package com.rpcode.personal;
 import com.rpcode.personal.expense.model.Expense;
 import com.rpcode.personal.expense.service.ExpenseManager;
+import com.rpcode.personal.expense.util.FileHandler;
 import java.util.*;
+import java.io.*;
 
 /**
  * Hello world!
@@ -17,7 +19,8 @@ public class App {
             System.out.println("2. View ALl Expenses");
             System.out.println("3. Search by Category");
             System.out.println("4. Search by Month");
-            System.out.println("5. Exit");
+            System.out.println("5. Generate Monthly Report");
+            System.out.println("6. Exit");
             System.out.println("Enter choice:");
             int choice=sc.nextInt();
             sc.nextLine();
@@ -57,6 +60,13 @@ public class App {
                     list2.forEach(System.out::println);
                     break;
                 case 5:
+                    System.out.println("Enter Month-Year (mm-yyyy)");
+                    String my=sc.nextLine();
+                    double total=manager.getTotalByMonth(my);
+                    Map<String, Double> map=manager.getCategorywiseTotal();
+                    FileHandler.generateReport(total,map); 
+                    break;
+                case 6:
                     System.out.println("Thank you for using Smart Personal Expense Tracker App.");
                     return;
                 default:
