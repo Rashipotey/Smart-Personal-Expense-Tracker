@@ -1,1 +1,3 @@
 com\rpcode\personal\App.class
+com\rpcode\personal\expense\model\Expense.class
+com\rpcode\personal\expense\service\ExpenseManager.class

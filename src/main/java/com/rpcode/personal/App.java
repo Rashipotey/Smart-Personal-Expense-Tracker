@@ -1,10 +1,51 @@
 package com.rpcode.personal;
+import com.rpcode.personal.expense.model.Expense;
+import com.rpcode.personal.expense.service.ExpenseManager;
+import java.util.*;
 
 /**
  * Hello world!
  */
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Scanner sc=new Scanner(System.in);
+        ExpenseManager manager=new ExpenseManager();
+
+        while(true){
+            System.out.println("Smart Personal Expense Tracker");
+            System.out.println("1. Add Expense");
+            System.out.println("2. View ALl Expenses");
+            System.out.println("3. Exit");
+            System.out.println("Enter choice:");
+            int choice=sc.nextInt();
+            sc.nextLine();
+            switch(choice){
+                case 1:
+                    System.out.println("Enter title");
+                    String title=sc.nextLine();
+                    System.out.println("Enter amount");
+                    double amount=sc.nextDouble();
+                    sc.nextLine();
+                    System.out.println("Enter date (dd-mm-yyyy)");
+                    String date=sc.nextLine();
+                    System.out.println("Enter category");
+                    String category=sc.nextLine();
+                    Expense e=new Expense(title,amount,date,category);
+                    manager.addExpense(e);
+                    System.out.println("Expense added successfully!");
+                    break;
+                case 2:
+                    System.out.println("Expense List:");
+                    for(Expense exp:manager.getAllExpenses()){
+                        System.out.println(exp);
+                    }
+                    break;
+                case 3:
+                    System.out.println("Thank you for using Smart Personal Expense Tracker App.");
+                    return;
+                default:
+                    System.out.println("Inavlid Choice. Try Again.");
+            }
+        }
     }
 }
